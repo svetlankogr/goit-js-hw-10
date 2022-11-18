@@ -18,13 +18,14 @@ function onSearchCountryInput(event) {
   countryList.innerHTML = '';
   countryInfo.innerHTML = '';
   const countryName = event.target.value.trim();
-  if (countryName) {
-    fetchCoutries(countryName)
-      .then(renderMarkup)
-      .catch(err => {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-      });
+  if (!countryName) {
+    return;
   }
+  fetchCoutries(countryName)
+    .then(renderMarkup)
+    .catch(err => {
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+    });
 }
 
 function renderMarkup(country) {
